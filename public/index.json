@@ -1,129 +1,87 @@
 [
 {
 	"uri": "/",
-	"title": "AWS 数据赋能 智能互联",
+	"title": "AWS IOT 动手训练营",
 	"tags": [],
 	"description": "",
-	"content": "  数据赋能 智能互联 开发者动手训练营\n本部署指南讨论了中国区IOT设备运用的架构注意事项和配置步骤。\n"
+	"content": "  AWS IOT 开发者动手训练营\n本部署指南讨论了中国区IOT设备运用的架构注意事项和配置步骤。\n"
+},
+{
+	"uri": "/002_connect-car-to-iot/021_create_skill/",
+	"title": "1. 创建 IOT Core",
+	"tags": [],
+	"description": "",
+	"content": " 在浏览器中，打开 IoT core控制台 ，选择管理物品，并选择创建  选择创建单个物品  取名car-xx(建议为树莓派纸盒上的编号)，本次lab不需要设置或选择type，然后点击下一步  选择一键式创建证书，并保存下载证书、公钥和私钥至笔记本，去掉文件名前面的c838e129ec-\n点击激活证书，并点击完成。至此car创建完成  添加物品策略\n点击左侧管理、物品，找到您创建的物品，并选中，随后点击安全性中的证书 然后点击左侧的策略，我们可以看到目前没有策略\n点击右上角的操作，选择附加策略，选择demo-iot-policy, 点击附加   "
+},
+{
+	"uri": "/002_connect-car-to-iot/022_edit_code/",
+	"title": "2. 配置虚拟车辆",
+	"tags": [],
+	"description": "",
+	"content": " 在Cloud9界面IDE中选中lab1-2文件夹，点击File，upload local files，将创建IOT物品步骤中生成的certificate.pem.crt和private.pem.key上传。\n您也可以直接用拖拽的方式将文件拖到目标文件夹。  exercise-lab1.js为实验1的代码，代码主要分为两部分，第一部分配置IoT endpoint，证书，private key等信息，并定义auto/（devicename）为消息topic 首先编辑exercise-lab1.js 中24行的 deviceName 以及 endpointAddress（IOT 的endpoint在下图中获得） 例如：\nconst deviceName = 'car-01'; const endpointAddress = 'a1ba8o0iqbelxz.ats.iot.cn-north-1.amazonaws.com.cn'  代码第二部分模拟汽车行驶状态，随机生成一些速度，油量，位置，紧急刹车事件等信息  然后在命令行中，进入lab1-2文件夹，并运行exercise-lab1.js程序，模拟汽车运行\nCd /home/ec2-user/workspace/auto-iot-lab/lab1-2 Node exerciser-lab1.js   在IoT core 中选择Test-Subscribe to a topic，填写代码中定义的topic：auto/(device_name) 如auto/car-01，并订阅 代码中定义每5秒生产一次数据，测试界面中将会持续收到car的行驶信息\nLab1测试成功  在Cloud9 中ctrl + C 终止程序，我们进入下一个实验。   "
 },
 {
 	"uri": "/010_architecture/",
 	"title": "OverView",
 	"tags": [],
 	"description": "",
-	"content": "在这个实验中，您将会学习到如何使用 AWS 的服务来构建一个 Alexa-Enabled 智能灯泡。\n在这个实验中，您将会创建以下资源:\n 一个虚拟的 Alexa-Enabled 智能家居灯泡 一个用于建立用户和设备绑定关系的系统，该服务基于 AppSync, Cognito User Pool, Lambda, DynamoDB 构建 一个 Alexa 的后端服务，该服务处理来自 Alexa 的指令，同时通过 IoT Core 操作灯泡的开关状态  "
+	"content": "在这个动手训练营中，您将会学习到如何使用 AWS 的服务来构建一个车辆IOT模拟器。\n本训练营包括三个子实验:\n Lab1 - 将车辆接入AWS IOT Lab2 - AWS IoT 影子控制 Lab3 - 通过Web与AWS IoT交互  "
 },
 {
-	"uri": "/001_create_iot_core/",
-	"title": "创建 IOT Core",
+	"uri": "/001_create_cloud9/",
+	"title": "创建 Cloud9 Lab环境",
 	"tags": [],
 	"description": "",
-	"content": " 部署说明 本章节将逐步带领您实现AWS IOT 核心的部署。\n我们将分别从以下步骤进行部署：\n 1. 创建智能灯泡模拟器   2. 修改默认的安全策略   "
+	"content": " 我们运用创建一个EC2 的Cloud9 实例来统一编程环境，简化实验的流程。\n  登录EC2控制台, 输入现场工作人员提供的用户名与密码\n本实验的用户名为：demouser-xx,\n密码为现场工作人员提供的密码\n启动EC2 ，新建实例：  点击Marketplace，搜索Cloud9，点击选择  选择实例类型，此处选择t3a.small:  选择下一步，配置实例详细信息，然后连续点击三次下一步。来到步骤6: 配置安全组，修改安全组的名称为 demo-(现场树莓派纸盒上的数字) 或者可以和现场其他用户区别开的唯一编码，这一步将让您可以在后续找到您启动的EC2。  点击审核和启动，在弹出的密钥对选择界面，选择在没有密钥对的情况下继续，然后勾选我确认，然后启动实例。  然后点击启动实例，成功后，由于是共用账号，所以有较多实例，请在上方搜索栏根据安全组名称找到您启动的实例(请不要和现场的其他用户弄混)  选中您创建的实例，我们为其赋予实验相关的IAM权限\n点击上方的操作，然后选择实例设置，Attach/Replace IAM Role\n选择ec2-s3-iot-access，并点击Apply\n 登录基于EC2搭建的Cloud9 编程环境\n在浏览器中输入 公有IP:8181 （请关闭所有代理）\n输入用户名： aws，\n密码： 实例ID（如下图所示），进入Cloud9界面.\n 从github 下载代码 在terminal中输入：\ngit clone https://github.com/Kervin-AWS/auto-iot-lab.git    "
 },
 {
-	"uri": "/002_create_connection_thinganduser/",
-	"title": "连接 IOT Core",
+	"uri": "/002_connect-car-to-iot/",
+	"title": "Lab1 将汽车接入AWS IoT",
 	"tags": [],
 	"description": "",
-	"content": " 部署说明 本章节将逐步带领您实现AWS IOT 核心的部署。\n我们将分别从以下步骤进行部署：\n 3. 启动Cloud9   4. 连接 IoT Core   5. 建立设备与用户绑定关系   "
+	"content": " 部署说明 Lab1将会在cloud9中模拟一台行驶的汽车设备，将行驶中的一些状态信息上传到AWS IoT,如下图所示\n我们将分别从以下步骤进行实验：\n 1. 创建 IOT Core   2. 配置虚拟车辆   "
 },
 {
-	"uri": "/003_connect_alexaandthing/",
-	"title": "配置 Alexa",
+	"uri": "/003_shadow/",
+	"title": "Lab2 AWS IoT的设备影子",
 	"tags": [],
 	"description": "",
-	"content": " 配置说明 本章节将逐步带领您实现Alexa 的配置。\n我们将分别从以下步骤进行配置：\n 6. 创建 SMART HOME SKILL   7. 在 Alexa Developer 控制台中配置 Account Linking   8. 创建并部署 ALEXA 后端 LAMBDA   9. 配置 ALEXA SKILL ENDPOINT   10. 在Alexa中查找你的设备   "
+	"content": "利用IoT shadow，可以在云端创建一个真实设备的影子，用于在设备断网时记录状态信息，联网后影子将和设备进行状态同步\n 我们在IoT core中找到car-xx，查看shadow状态\n 打开Lab2的代码exercise-lab2.js，可以看到代码定义了车灯开和车灯关两个状态 在当前目录执行代码，可以看到当前状态为车灯关闭 在云端查看car1点影子状态，可以看到已经实时同步为lights:false，即车灯关闭 我们在云端对car1的影子发布指令，把车灯打开。 在IoT core中选择Test-Publish to a topic，输入$aws/things/car-01/shadow/update，在方框中写入执行代码，\n{ \u0026quot;state\u0026quot;: { \u0026quot;desired\u0026quot;: { \u0026quot;lights\u0026quot;: true } } }  然后Publish  在Cloud9客户端可以看到car1 reporting了一个新的状态，车灯状态从off 变成了on，云端指令下发成功 在云端查看之前订阅的$aws/things/car1/shadow/update/documents，可以看到影子状态从false变成true\n 在云端多次改变shadow状态，在cloud9设备端查看car1车灯状态   "
 },
 {
-	"uri": "/004_connect_raspberry/",
-	"title": "连接树莓派",
+	"uri": "/004_webcontrol/",
+	"title": "Lab3 通过web与AWS IoT交互",
 	"tags": [],
 	"description": "",
-	"content": " 配置说明 本章节将逐步带领您实现树莓派的配置。\n我们将分别从以下步骤进行配置：\n 11. 将灯泡连接到树莓派的引脚上   12. 测试 SMART HOME SKILL   "
+	"content": " 实验说明 除了MQTT外，另外一个非常典型的场景是使用https，通过web和AWS IoT交互。\nLab3将通过aws cognito验证身份，并通过web对shadow进行操作\n为了简化实验，本Lab已经配置好了统一的Congnito 身份池\n我们将分别从以下步骤进行配置：\n 1. 部署静态前端网页   2. 部署到树莓派   3. 连接灯泡并测试   4. 测试 IOT 车灯控制模拟器   "
 },
 {
-	"uri": "/001_create_iot_core/020_create_simulator/",
-	"title": "1. 创建智能灯泡模拟器",
+	"uri": "/004_webcontrol/041_creates3/",
+	"title": "1. 部署静态前端网页",
 	"tags": [],
 	"description": "",
-	"content": "在本节中，我们会创建Iot事物、证书以及安全策略。\n注意：请选择宁夏Region\n  登陆 AWS IoT Core 控制台，显示如下。\n 在左侧导航栏中，选择 Onboard 菜单\n 在 Configuring a device 中, 点击 Getting Started 按钮\n 在 How are you connecting to AWS IoT? 页面, 选择 Linux 作为运行平台; 选择 Node.js for IoT Device SDK， 然后点击 Next\n 在 Name 字段中输入 ratchet, 点击 Next step 如果您与别人共享这个 AWS 账号，请输入一些前缀来区别您和别人创建的事物, e.g. cw_ratchet。    在 Download connection kit 页面中，点击 Linux/OSX 按钮来下载我们所需的文件。当下载完成后，点击 Next 按钮。   总结一下, 我们在之前的步骤中，创建了如下内容： - 一个 安全策略 来控制事物访问 IoT Core - 一个 Linux/OSX zip 文件，包含连接 IoT Core 所需的证书\n请不要丢失这个 ZIP 文件，它包含 private key（私有安全密钥）, 一旦遗失，无法再次获取。\n 在这个实验中，您将会创建如何资源:\n 一个虚拟的 Alexa-Enabled 智能家居灯泡 一个用于建立用户和设备绑定关系的系统，该服务基于 AppSync, Cognito User Pool, Lambda, DynamoDB 构建 一个 Alexa 的后端服务，该服务处理来自 Alexa 的指令，同时通过 IoT Core 操作灯泡的开关状态  "
+	"content": " 创建S3存储桶，起名为auto-iot-lab-xx（如auto-iot-lab-01）, 用于托管与IoT交互的静态网站，需要开放Public访问权限。  然后返回Cloud9 中，进入Lab3文件夹\n您只需要更改Cloud9 中 Lab3 文件夹下 index.js 中的 26行的 deviceName 为您的IOT设备名称，如 car-01\n 将文件同步到目标储存桶中，在terminal中输入：\naws configure set default.region cn-north-1 cd /home/ec2-user/workspace/auto-iot-lab/lab3 aws s3 cp --recursive --acl public-read . s3://auto-iot-lab-01（请换成您创建的储存桶名称）   点击属性，选择静态网站托管 选择使用此储存桶托管网站，并填写索引文档为index.html  点击S3存储桶中的index.html,复制右边的对象URL  进入Cloud9， 启动Lab2的脚本，查看当前shadow状态，车灯状态是on。\nnode ./exercise-lab2.js   打开前述index.html的网址，进入如下页面，点击Toggle car1’s lights，可以对车灯进行开和关  进入Cloud9环境，查看car1设备车灯情况，发现和web操作一致。也可以在云端查看shadow和delta信息进一步核对   "
 },
 {
-	"uri": "/001_create_iot_core/030_change_policy/",
-	"title": "2. 修改默认的安全策略",
+	"uri": "/004_webcontrol/042_connet_rasp/",
+	"title": "2. 部署到树莓派",
 	"tags": [],
 	"description": "",
-	"content": "默认的安全策略会限制这个设备能发布的消息 topic。在这个实验中，我们将会创建一个更加开放的安全策略，以便我们能够通过APP进行连接。因此，需要先找到 之前创建的策略。\n 在 AWS IoT Core 控制台点击 Manage，它会默认选中 Things\n 找到之前步骤中创建的事物, 例如本实验中叫做 ratchet\n 选择这个事物\n 在左侧菜单栏，点击 Security\n 点击已经附加的策略，如下  点击 Policies  选择 Policy, 这个实验中，应该叫 ratchet-Policy\n 点击 Edit Policy Document\n Enter the following for your document\n{ \u0026quot;Version\u0026quot;: \u0026quot;2012-10-17\u0026quot;, \u0026quot;Statement\u0026quot;: [ { \u0026quot;Effect\u0026quot;: \u0026quot;Allow\u0026quot;, \u0026quot;Action\u0026quot;: [ \u0026quot;iot:Publish\u0026quot;, \u0026quot;iot:Subscribe\u0026quot;, \u0026quot;iot:Connect\u0026quot;, \u0026quot;iot:Receive\u0026quot; ], \u0026quot;Resource\u0026quot;: [ \u0026quot;*\u0026quot; ] } ] }  点击 Save as new version   现在，你的设备可以发布和订阅任何消息。至今，我们已经完成了三个 IoT 组件的创建: - 设备证书 - 一个安全策略 - 安全策略与设备证书与事物的关联\n"
+	"content": " 将代码拉取到树莓派中  通过ssh进入树莓派， Mac用户可以直接通过terminal进入， Windows用户请确认系统以开启ssh功能后，再运用相关软件进行连接\n用户名： pi\n密码： awsworkshop\nssh pi@192.xxx.xxx.xx  首先拉取github树莓派端的代码\ngit clone https://github.com/Kervin-AWS/auto-iot-lab-rasp.git  在本地terminal内进入“创建智能灯泡模拟器”步骤中下载的证书文件夹，将生成的 certificate.pem.crt、private.pem.key 通过scp的方式传入树莓派的auto-iot-lab-rasp文件夹中\nscp ./cert.pem pi@xxx.xxx.xxx.xxx:/home/pi/auto-iot-lab-rasp scp ./private.key pi@xxx.xxx.xxx.xxx:/home/pi/auto-iot-lab-rasp  在树莓派内通过 vim 或者 nano 修改exercise-lab3.js中的thingName为自己设置的IOT 设备名称，如car-01\n 然后在树莓派中启动exercise-lab3.js\nnode exercise-lab3.js   "
 },
 {
-	"uri": "/002_create_connection_thinganduser/040_setup_cloud9/",
-	"title": "3. 启动Cloud9",
+	"uri": "/004_webcontrol/043_connet_raspberry/",
+	"title": "3. 连接灯泡并测试",
 	"tags": [],
 	"description": "",
-	"content": " 本实验使用使用 Cloud9 开发环境，下面将引导你运用EC2创建Cloud9环境\n  启动EC2 ，新建实例：  点击Marketplace，搜索Cloud9，点击选择  选择实例类型，此处选择t3a.small:  新建并下载密钥对，此处按照要求命名   然后点击启动实例，成功后，查看实例公有IP，\n在浏览器中输入 公有IP:8181 （请关闭所有代理）\n输入用户名： aws，\n密码： 实例ID（如下图所示），进入Cloud9界面.\n"
+	"content": "按下图将灯泡通过母母的杜邦线连接到树莓派上： 灯泡的R极 -\u0026gt; 树莓派18引脚\n灯泡的负极-\u0026gt; 树莓派GND引脚\n"
 },
 {
-	"uri": "/002_create_connection_thinganduser/050_connect_2_iotcore/",
-	"title": "4. 连接 IoT Core",
+	"uri": "/004_webcontrol/044_test_the_lamp/",
+	"title": "4. 测试 IOT 车灯控制模拟器",
 	"tags": [],
 	"description": "",
-	"content": " 请确认当前网络环境是否屏蔽了 8883 端口。 如果被屏蔽，可以考虑使用一个 guest network 或者 个人热点。\n  Git clone 如下代码仓库, 在 Cloud9 的 terminal 中输入\ngit clone https://github.com/Kervin-AWS/aws-alexa-workshop-smarthome-lamp-cn.git cd aws-alexa-workshop-smarthome-lamp-cn  解压之前下载的 ZIP 文件. 您将获得如下文件:\n 一个 private key, \\\u0026lt;thing-name\\\u0026gt;.private.key\n 一个 device certificate, \\\u0026lt;thing-name\\\u0026gt;.cert.pem\n  把 private key 重命名为 private.key 并且拖拽上传到 credentials 文件夹(选择替换).\n 将 device certificate 重命名为 cert.pem 并且拖拽上传到 credentials 文件夹(选择替换).\n 修改 index.js 中的配置并保存\n iotEndpoint. 在 IoT Core 控制台左侧 Settings 菜单中可以找到  thingName. 之前创建的事物名称\n deviceBindingUrl. 这个请不要修改它，本实验已经帮您配置好Amplify\n  安装依赖. 在 Cloud9 的 terminal 中运行\nnpm install  运行\nnode index.js  启动应用程序。运行成功后， terminal 将会输出一个二维码。 在下一步中，我们将使用这个二维码完成用户和设备之间的绑定关系。   "
-},
-{
-	"uri": "/002_create_connection_thinganduser/060_connect_thinganduser/",
-	"title": "5. 建立设备与用户绑定关系",
-	"tags": [],
-	"description": "",
-	"content": "在本章节中，我们会通过扫描设备二维码，来建立设备和用户之间的绑定关系。\n 确保已经完成上一步且”虚拟智能灯泡模拟器”程序正在运行。\n 使用您的 手机相机应用/支付宝 来扫描二维码\n 浏览器会被重定向到 登陆页面 ，如果您还没有账号，请创建一个账号，如已经有账号，点击登录。\n 浏览器会被重定向到 设备绑定 页面，点击 Bind 按钮  刷新页面，检查这个按钮的状态是否变成了 Unbind, 如果已经变化, 则已经绑定成功\n  "
-},
-{
-	"uri": "/003_connect_alexaandthing/070_create_skill/",
-	"title": "6. 创建 SMART HOME SKILL",
-	"tags": [],
-	"description": "",
-	"content": "在此章节中，我们将创建一个空的Alexa Skill。我们将会在下面的章节中配置它。\n 在浏览器中，打开 Alexa Skills Kit Developer Console。如果您还没有 完成认证，您需要使用您的 Amazon Developer Account 来登陆。\n 点击 Create Skill 按钮。\n 在 Skill name 处，输入 SmartLamp。\n 选择 English (US) 来作为技能的默认语言。\n 在 Choose a model to add to your skill 中选择 Smart Home model。点击此处了解Smart home model相关信息。\n 在 Choose a method to host your skill’s backend resources 中，选择 Provision your own\n 点击 Create 按钮来完成技能创建\n 完成创建后，您应该会被自动跳转到一个叫做 SmartLamp 的配置页面。在 Smart Home service endpoint 中，找到 Skill ID, 点击 Copy to clipboard 来拷贝并复制到其他地方。这个 SKill ID 会在后续的配置过程中被使用到。 现阶段，您不需要配置其他信息。\n  "
-},
-{
-	"uri": "/003_connect_alexaandthing/080_account_linking/",
-	"title": "7. 在 Alexa Developer 控制台中配置 Account Linking",
-	"tags": [],
-	"description": "",
-	"content": " 打开 Alexa Console\n 在 Skills 列表中，选择之前创建的 Skill\n 在左侧导航栏中，选择 Account Linking\n 在 Security Provider Information 下，选择 Auth Code Grant\n 在 Authorization URI 中输入 https://alexa-workshop-dev-cn01.auth.us-east-1.amazoncognito.com/oauth2/authorize\n 在 Access Token URI 中输入 https://alexa-workshop-dev-cn01.auth.us-east-1.amazoncognito.com/oauth2/token\n 在 Client ID 中输入4od0k6ioo94e29naua62fhk0tt\n 在 Client Secret 中输入mteph8cegr5v645tn4ua1ommobpcd26k9ner80c2fbudkguqgm8  点击 Add scope 并且输入 openid. 对于 Smart Home Skill, 至少需要选择一个 scope\n 其余保持默认不变，在右上角点击 Save 按钮    注意，为了简化实验，我们已经配置好了Cognito。请把Account Link最下方的三个链接给到我们，我们会在Cognito中进行设置，这样才能Link成功。\n 请进入共享文档https://shimo.im/sheets/KxxDpXx3XdD3DKkQ/MODOC，将您的三个URL输入其中，如下图所示，并通知现场工作人员\n"
-},
-{
-	"uri": "/003_connect_alexaandthing/090_lambda/",
-	"title": "8. 创建并部署 ALEXA 后端 LAMBDA",
-	"tags": [],
-	"description": "",
-	"content": " 由于考虑到信息安全问题，具有admin权限的账号需要您手动输入两次账户密钥，感谢您的耐心与理解\n  首先，进入您的 Cloud9 环境根目录, 打开一个terminal配置aws configure，赋予该环境您global账户的访问权限，为后面的global lambda远程部署做准备（此处使用Global账号）\n此步骤需要您通过输入\naws configure  来配置AKSK、Region等信息\nAWS Access Key ID: 现场提供的Global AK\nAWS Secret Access Key ID: 现场提供的Global SK\nregion: us-east-1\n 在 terminal 中输入\ngit clone https://github.com/Kervin-AWS/aws-alexa-workshop-smarthome-cn.git cd aws-alexa-workshop-smarthome-cn  编辑 config.json 文件,\n您需要修改 alexaSmartHomeAppId 为您的Alexa Skills Id，\n您需要修改 iotEndpoint 为您的中国区的IOT endpoint，\n其余参数保持默认不变。\n 编辑index.js 中的AWS.IotData 初始化代码，输入现场提供的中国区账号AKSK，从而可以实现对国内IOT设备的控制。注意本实验仅为实现功能，生产环境将会采用非明文的认证方式。\nAWS Access Key ID: 现场提供的China AK\nAWS Secret Access Key ID: 现场提供的China SK\nregion: cn-northwest-1\n 为了简化实验，请您编辑index.js 中的 AWS.DynamoDB.DocumentClient 初始化代码，请复制下方的DynamoDB只读AKSK到index.js中的28行，注意本实验仅为实现功能，生产环境将会采用非明文的认证方式。\nAWS Access Key ID: \nAWS Secret Access Key ID: \n 修改serverless.yml 里面的function名称，注意每一个IOT要用不同的名称  运行 npm install 来安装依赖， 包括开发环境的依赖\n 运行 npm config set registry https://registry.npm.taobao.org 换源\n 运行 npm install -g serverless 来安装serverless。\n 运行 sls deploy\n  部署成功后，您可以通过命令行查看部署好的一个类似于 alexa-smarthome-{stage}-backend 的 Lambda 方法，并且查看到RAN\naws lambda list-functions  "
-},
-{
-	"uri": "/003_connect_alexaandthing/100_alexa_skill_endpoint/",
-	"title": "9. 配置 ALEXA SKILL ENDPOINT",
-	"tags": [],
-	"description": "",
-	"content": "本小节，将刚才创建的 Lambda 函数与 Alexa Skill link在一起。\n 拷贝 Lambda 方法的 ARN, 在 Cloud 9 中输入\naws lambda list-functions  将下图中的ARN拷贝下来\n 打开 Alexa Developer Console, 选择创建的 Smart Home 技能\n 在 Default endpoint 黏贴拷贝的 Lambda ARN   点击右上角的 Save 按钮\n"
-},
-{
-	"uri": "/003_connect_alexaandthing/101_alxea_discover_device/",
-	"title": "10. 在Alexa中查找你的设备",
-	"tags": [],
-	"description": "",
-	"content": "本小节中，您将在Alexa中查找你的device。\n 打开Alexa 网页版客户端\n 点击左侧 Skills , 随后点击右上角的 Your Skills  点击 ALL SKILLS 找到你的skill，然后点击，进入激活页面 激活成功后, 返回到skill 页面，点击弹出的 Discover Devices 稍等片刻后，则可以看到自己的设备   "
-},
-{
-	"uri": "/004_connect_raspberry/110_connet_raspberry/",
-	"title": "11. 将灯泡连接到树莓派的引脚上",
-	"tags": [],
-	"description": "",
-	"content": " 按下图将灯泡通过母母的杜邦线连接到树莓派上： 灯泡的R极 -\u0026gt; 树莓派18引脚\n灯泡的负极-\u0026gt; 树莓派GND引脚\n将代码拉取到树莓派中  通过ssh进入树莓派  用户名： pi\n密码： awsworkshop\nssh pi@192.xxx.xxx.xx   首先拉取github树莓派端的代码\ngit clone https://github.com/Kervin-AWS/aws-alexa-workshop-raspi-cn.git  在本地terminal内进入“创建智能灯泡模拟器”步骤中下载的证书文件夹，将生成的cert.pem 、 private.key 通过scp的方式传入树莓派的aws-alexa-workshop-raspi-cn文件夹中\nscp ./cert.pem pi@xxx.xxx.xxx.xxx:/home/pi/aws-alexa-workshop-raspi-cn scp ./private.key pi@xxx.xxx.xxx.xxx:/home/pi/aws-alexa-workshop-raspi-cn   在树莓派内通过 vim 或者 nano 修改ledSwitch.py 中的awsiotHost为自己设置的IOT Endpoint  修改ledSwitch.py 中的thingName为自己设置的item name  修改完成后保存退出\n 在树莓派命令行中输入python ledSwitch.py，启动IOT脚本\npython ledSwitch.py   "
-},
-{
-	"uri": "/004_connect_raspberry/120_test_the_lamp/",
-	"title": "12. 测试 SMART HOME SKILL",
-	"tags": [],
-	"description": "",
-	"content": "至此，我们已经完成了所有Alexa Smart Home Skill的配置。现在，您可以通过语音来进行智能灯泡开关控制的测试了。 在本节中，我们还将有两个进阶挑战，可以使得您通过简单而明确的指令控制多个灯泡。\n您可以通过Alexa APP， Alexa Developer Console 或者 Echo 来进行测试。\n 打开 Alexa Developer Console, 选择您创建的技能\n 点击 Test tab, 尝试输入 turn on the \u0026lt;device-friendly-name\u0026gt;  检查树莓派的灯泡状态变化 \n 如果您没有树莓派，您可以在IOT 控制台通过设备的影子查看虚拟设备的状态切换   "
+	"content": "现在，您可以通过网页端配置来进行模拟车灯开关控制的测试了。\n 打开您在步骤1中创建的前端静态车辆控制页面\n 点击按钮观察树莓派灯泡的状态变化 \n  "
 },
 {
 	"uri": "/categories/",

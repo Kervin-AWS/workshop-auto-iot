@@ -7,83 +7,53 @@
   </url>
   
   <url>
+    <loc>/002_connect-car-to-iot/021_create_skill/</loc>
+    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/002_connect-car-to-iot/022_edit_code/</loc>
+    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/010_architecture/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/001_create_iot_core/</loc>
+    <loc>/001_create_cloud9/</loc>
   </url>
   
   <url>
-    <loc>/002_create_connection_thinganduser/</loc>
+    <loc>/002_connect-car-to-iot/</loc>
   </url>
   
   <url>
-    <loc>/003_connect_alexaandthing/</loc>
+    <loc>/003_shadow/</loc>
   </url>
   
   <url>
-    <loc>/004_connect_raspberry/</loc>
+    <loc>/004_webcontrol/</loc>
   </url>
   
   <url>
-    <loc>/001_create_iot_core/020_create_simulator/</loc>
+    <loc>/004_webcontrol/041_creates3/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/001_create_iot_core/030_change_policy/</loc>
+    <loc>/004_webcontrol/042_connet_rasp/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/002_create_connection_thinganduser/040_setup_cloud9/</loc>
+    <loc>/004_webcontrol/043_connet_raspberry/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/002_create_connection_thinganduser/050_connect_2_iotcore/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/002_create_connection_thinganduser/060_connect_thinganduser/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/070_create_skill/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/080_account_linking/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/090_lambda/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/100_alexa_skill_endpoint/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/101_alxea_discover_device/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/004_connect_raspberry/110_connet_raspberry/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/004_connect_raspberry/120_test_the_lamp/</loc>
+    <loc>/004_webcontrol/044_test_the_lamp/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   

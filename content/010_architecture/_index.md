@@ -5,12 +5,12 @@ draft: false
 weight: 10
 ---
 
-在这个实验中，您将会学习到如何使用 AWS 的服务来构建一个 Alexa-Enabled 智能灯泡。
+在这个动手训练营中，您将会学习到如何使用 AWS 的服务来构建一个车辆IOT模拟器。
 
-![Image](/images/png/001.png)
+![Image](/images/png/38.png)
 
-在这个实验中，您将会创建以下资源:
+本训练营包括三个子实验:
 
-- 一个虚拟的 Alexa-Enabled 智能家居灯泡
-- 一个用于建立用户和设备绑定关系的系统，该服务基于 AppSync, Cognito User Pool, Lambda, DynamoDB 构建
-- 一个 Alexa 的后端服务，该服务处理来自 Alexa 的指令，同时通过 IoT Core 操作灯泡的开关状态
+- Lab1 - 将车辆接入AWS IOT
+- Lab2 - AWS IoT 影子控制
+- Lab3 - 通过Web与AWS IoT交互

@@ -1,12 +1,12 @@
 ---
-title: "AWS 数据赋能 智能互联"
+title: "AWS IOT 动手训练营"
 chapter: true
 weight: 1
 ---
 
 <div style="text-align: center"><h2></h2></div>
 
-# 数据赋能 智能互联
+# AWS IOT
 
 **开发者动手训练营**
 

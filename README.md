@@ -12,10 +12,10 @@ Install Hugo:
 
 #### Clone this repo:
 From wherever you checkout repos:
-`git clone https://github.com/Kervin-AWS/workshop-IOT-Alexa.git` (or your fork)
+`git clone https://github.com/Kervin-AWS/workshop-auto-iot.git` (or your fork)
 
 #### Clone the theme submodule:
-`cd workshop-IOT-Alexa`
+`cd workshop-auto-iot`
 
 `git submodule init` ;
 `git submodule update`
