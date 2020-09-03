@@ -9,5 +9,6 @@ weight: 110
 1.	打开您在步骤1中创建的前端静态车辆控制页面
 
 2.	点击按钮观察树莓派灯泡的状态变化
-<video src="/images/png1/demo.mp4" width="800px" height="600px" controls="controls"></video>
+
+  <video src="/images/png1/demo.mp4" width="800px" height="600px" controls="controls"></video>
 
