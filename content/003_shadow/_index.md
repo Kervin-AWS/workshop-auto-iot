@@ -16,6 +16,9 @@ draft: false
 2. 打开Lab2的代码exercise-lab2.js，可以看到代码定义了车灯开和车灯关两个状态
     ![Image](/images/png/31.png)
 
+    修改exercise-lab2.js 的21行的物品名称，
+    ![Image](/images/png/06.png)
+
     在当前目录执行代码，可以看到当前状态为车灯关闭
     ![Image](/images/png/32.png)
 
@@ -23,7 +26,7 @@ draft: false
     ![Image](/images/png/33.png)
 
     我们在云端对car1的影子发布指令，把车灯打开。
-    在IoT core中选择Test-Publish to a topic，输入`$aws/things/car-01/shadow/update`，在方框中写入执行代码，
+    在IoT core中选择Test-Publish to a topic，输入`$aws/things/car-xx/shadow/update`，将xx替换为你的编号，在方框中写入执行代码，
     
     ```shell
     {

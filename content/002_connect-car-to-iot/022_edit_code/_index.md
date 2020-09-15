@@ -27,8 +27,9 @@ weight: 10
 
 4. 然后在命令行中，进入lab1-2文件夹，并运行exercise-lab1.js程序，模拟汽车运行
     ```shell
-    Cd /home/ec2-user/workspace/auto-iot-lab/lab1-2
-    Node exerciser-lab1.js
+    cd /home/ec2-user/workspace/auto-iot-lab/lab1-2
+    npm install aws-iot-device-sdk
+    node exerciser-lab1.js
     ```
     ![Image](/images/png/25.png)
 

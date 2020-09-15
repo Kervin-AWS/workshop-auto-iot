@@ -13,20 +13,20 @@
     <title>创建 Cloud9 Lab环境 :: IOT Workshop</title>
 
     
-    <link href="../css/nucleus.css?1599124655" rel="stylesheet">
-    <link href="../css/fontawesome-all.min.css?1599124655" rel="stylesheet">
-    <link href="../css/hybrid.css?1599124655" rel="stylesheet">
-    <link href="../css/featherlight.min.css?1599124655" rel="stylesheet">
-    <link href="../css/perfect-scrollbar.min.css?1599124655" rel="stylesheet">
-    <link href="../css/auto-complete.css?1599124655" rel="stylesheet">
-    <link href="../css/atom-one-dark-reasonable.css?1599124655" rel="stylesheet">
-    <link href="../css/theme.css?1599124655" rel="stylesheet">
-    <link href="../css/hugo-theme.css?1599124655" rel="stylesheet">
+    <link href="../css/nucleus.css?1600189861" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css?1600189861" rel="stylesheet">
+    <link href="../css/hybrid.css?1600189861" rel="stylesheet">
+    <link href="../css/featherlight.min.css?1600189861" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css?1600189861" rel="stylesheet">
+    <link href="../css/auto-complete.css?1600189861" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css?1600189861" rel="stylesheet">
+    <link href="../css/theme.css?1600189861" rel="stylesheet">
+    <link href="../css/hugo-theme.css?1600189861" rel="stylesheet">
     
-      <link href="../css/theme-mine.css?1599124655" rel="stylesheet">
+      <link href="../css/theme-mine.css?1600189861" rel="stylesheet">
     
 
-    <script src="../js/jquery-3.3.1.min.js?1599124655"></script>
+    <script src="../js/jquery-3.3.1.min.js?1600189861"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -73,10 +73,10 @@
     <meta name="msapplication-wide310x150logo" content="/icons/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="/icons/mstile-310x310.png" />
 
-    <link href="../mermaid/mermaid.css?1599124655" type="text/css" rel="stylesheet" />
-    <link href="../css/jquery-ui.min.css?1599124655" rel="stylesheet">
-    <script src="../js/jquery-ui-1.12.1.min.js?1599124655"></script>
-    <script src="../mermaid/mermaid.min.js?1599124655"></script>
+    <link href="../mermaid/mermaid.css?1600189861" type="text/css" rel="stylesheet" />
+    <link href="../css/jquery-ui.min.css?1600189861" rel="stylesheet">
+    <script src="../js/jquery-ui-1.12.1.min.js?1600189861"></script>
+    <script src="../mermaid/mermaid.min.js?1600189861"></script>
     <script>
 	var config = {
         startOnLoad:true,
@@ -105,14 +105,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../js/lunr.min.js?1599124655"></script>
-<script type="text/javascript" src="../js/auto-complete.js?1599124655"></script>
+<script type="text/javascript" src="../js/lunr.min.js?1600189861"></script>
+<script type="text/javascript" src="../js/auto-complete.js?1600189861"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../js/search.js?1599124655"></script>
+<script type="text/javascript" src="../js/search.js?1600189861"></script>
 
     
   </div>
@@ -529,30 +529,33 @@
 
 
 	
-<div class="notices info" ><p>我们运用创建一个EC2 的Cloud9 实例来统一编程环境，简化实验的流程。</p>
+<div class="notices info" ><p>实验将在<span style="color: red;">北京Region（cn-north-1）</span>进行，我们运用创建一个EC2 的Cloud9 实例来统一编程环境。</p>
 </div>
 
 
 <ol>
 <li><p><a href="https://898111891143.signin.amazonaws.cn/console" target="_blank">登录EC2控制台</a>, 输入现场工作人员提供的用户名与密码</p>
 
-<p>本实验的用户名为：<code>demouser-xx</code>,</p>
+<p>本实验的用户名为：<code>demouser-xx</code>, 为了方便大家进行区分，可以以手头树莓派的编号替代前述的xx</p>
 
-<p>密码为现场工作人员提供的密码</p>
+<p><strong>密码为现场工作人员提供的密码</strong></p>
 
 <p><img src="../images/png/1.png" alt="Image" /></p>
 
 <p><a href="https://cn-northwest-1.console.amazonaws.cn/ec2/v2/home?region=cn-northwest-1#Home:" target="_blank"><span style="color: red;"><strong>启动EC2</strong></span> </a>，新建实例：
-<img src="../images/png/2.png" alt="Image" /></p></li>
+<img src="../images/png/02.png" alt="Image" /></p></li>
 
 <li><p>点击Marketplace，搜索<code>Cloud9</code>，点击选择
-<img src="../images/png/3.png" alt="Image" /></p></li>
+<img src="../images/png/03.png" alt="Image" /></p></li>
 
 <li><p>选择实例类型，此处选择t3a.small:
 <img src="../images/png/4.png" alt="Image" /></p></li>
 
-<li><p>选择下一步，配置实例详细信息，然后连续点击三次下一步。来到步骤6: 配置安全组，修改安全组的名称为 <code>demo-(现场树莓派纸盒上的数字)</code> 或者可以和现场其他用户区别开的唯一编码，这一步将让您可以在后续找到您启动的EC2。
-<img src="../images/png/5.png" alt="Image" /></p></li>
+<li><p>选择下一步，配置实例详细信息，然后连续点击两次下一步。来到步骤5: 添加标签，添加标签 Name: 你的名字，用户和其他用户区分开。
+<img src="../images/png/04.png" alt="Image" /></p></li>
+
+<li><p>选择下一步，来到步骤6: 配置安全组，选择 <strong>选择一个现有的安全组</strong>，然后选择ID为<code>sg-024db36b892d8b71e</code>的安全组。
+<img src="../images/png/05.png" alt="Image" /></p></li>
 
 <li><p>点击审核和启动，在弹出的密钥对选择界面，选择在没有密钥对的情况下继续，然后勾选我确认，然后启动实例。
 <img src="../images/png/6.png" alt="Image" /></p></li>
@@ -834,19 +837,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../js/clipboard.min.js?1599124655"></script>
-    <script src="../js/perfect-scrollbar.min.js?1599124655"></script>
-    <script src="../js/perfect-scrollbar.jquery.min.js?1599124655"></script>
-    <script src="../js/jquery.sticky.js?1599124655"></script>
-    <script src="../js/featherlight.min.js?1599124655"></script>
-    <script src="../js/highlight.pack.js?1599124655"></script>
+    <script src="../js/clipboard.min.js?1600189861"></script>
+    <script src="../js/perfect-scrollbar.min.js?1600189861"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js?1600189861"></script>
+    <script src="../js/jquery.sticky.js?1600189861"></script>
+    <script src="../js/featherlight.min.js?1600189861"></script>
+    <script src="../js/highlight.pack.js?1600189861"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../js/modernizr.custom-3.6.0.js?1599124655"></script>
-    <script src="../js/learn.js?1599124655"></script>
-    <script src="../js/hugo-learn.js?1599124655"></script>
+    <script src="../js/modernizr.custom-3.6.0.js?1600189861"></script>
+    <script src="../js/learn.js?1600189861"></script>
+    <script src="../js/hugo-learn.js?1600189861"></script>
 
-    <link href="../mermaid/mermaid.css?1599124655" rel="stylesheet" />
-    <script src="../mermaid/mermaid.js?1599124655"></script>
+    <link href="../mermaid/mermaid.css?1600189861" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js?1600189861"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
