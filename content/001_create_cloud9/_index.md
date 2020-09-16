@@ -36,7 +36,7 @@ draft: false
     ![Image](/images/png/6.png)
 
 7. 然后点击启动实例，成功后，由于是共用账号，所以有现场会看到较多其他用户生成的实例，请在上方搜索栏根据Name找到您启动的实例(请不要和现场的其他用户弄混)
-    ![Image](/images/png/7.png)
+    ![Image](/images/png/100.png)
 
 8. 选中您创建的实例，我们为其赋予实验相关的IAM权限
 
