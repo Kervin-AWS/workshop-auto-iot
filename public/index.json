@@ -18,7 +18,7 @@
 	"title": "2. 配置虚拟车辆",
 	"tags": [],
 	"description": "",
-	"content": " 在Cloud9界面IDE中选中lab1-2文件夹，点击File，upload local files，将创建IOT物品步骤中生成的certificate.pem.crt和private.pem.key上传。\n您也可以直接用拖拽的方式将文件拖到目标文件夹。  exercise-lab1.js为实验1的代码，代码主要分为两部分，第一部分配置IoT endpoint，证书，private key等信息，并定义auto/（devicename）为消息topic 首先编辑exercise-lab1.js 中24行的 deviceName 以及 endpointAddress（IOT 的endpoint在下图中获得） 例如：\nconst deviceName = 'car-01'; const endpointAddress = 'a1ba8o0iqbelxz.ats.iot.cn-north-1.amazonaws.com.cn'  代码第二部分模拟汽车行驶状态，随机生成一些速度，油量，位置，紧急刹车事件等信息  然后在命令行中，进入lab1-2文件夹，并运行exercise-lab1.js程序，模拟汽车运行\ncd /home/ec2-user/workspace/auto-iot-lab/lab1-2 npm install aws-iot-device-sdk node exerciser-lab1.js   在IoT core 中选择Test-Subscribe to a topic，填写代码中定义的topic：auto/(device_name) 如auto/car-01，并订阅 代码中定义每5秒生产一次数据，测试界面中将会持续收到car的行驶信息\nLab1测试成功  在Cloud9 中ctrl + C 终止程序，我们进入下一个实验。   "
+	"content": " 在Cloud9界面IDE中选中lab1-2文件夹，点击File，upload local files，将创建IOT物品步骤中生成的certificate.pem.crt和private.pem.key上传。\n您也可以直接用拖拽的方式将文件拖到目标文件夹。  exercise-lab1.js为实验1的代码，代码主要分为两部分，第一部分配置IoT endpoint，证书，private key等信息，并定义auto/（devicename）为消息topic 首先编辑exercise-lab1.js 中24行的 deviceName 以及 endpointAddress（IOT 的endpoint在下图中获得） 例如：\nconst deviceName = 'car-01'; const endpointAddress = 'a1ba8o0iqbelxz.ats.iot.cn-north-1.amazonaws.com.cn'  代码第二部分模拟汽车行驶状态，随机生成一些速度，油量，位置，紧急刹车事件等信息  然后在命令行中，进入lab1-2文件夹，并运行exercise-lab1.js程序，模拟汽车运行\ncd /home/ec2-user/workspace/auto-iot-lab/lab1-2 npm install aws-iot-device-sdk node exercise-lab1.js   在IoT core 中选择Test-Subscribe to a topic，填写代码中定义的topic：auto/(device_name) 如auto/car-01，并订阅 代码中定义每5秒生产一次数据，测试界面中将会持续收到car的行驶信息\nLab1测试成功  在Cloud9 中ctrl + C 终止程序，我们进入下一个实验。   "
 },
 {
 	"uri": "/010_architecture/",

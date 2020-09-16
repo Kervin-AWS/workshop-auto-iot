@@ -29,7 +29,7 @@ weight: 10
     ```shell
     cd /home/ec2-user/workspace/auto-iot-lab/lab1-2
     npm install aws-iot-device-sdk
-    node exerciser-lab1.js
+    node exercise-lab1.js
     ```
     ![Image](/images/png/25.png)
 
